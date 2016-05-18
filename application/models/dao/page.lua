@@ -33,7 +33,7 @@ function PageDao:getItem(uid)
     end
 end
 function PageDao:getPage(item_id)
-    local res, err = db:query("select * from page where item_id=?",{tonumber(item_id)})
+    local res, err = db:query("select * from `page` where item_id=?",{tonumber(item_id)})
 
     if not res or err or type(res) ~= "table" or #res <= 0 then
         return {}
@@ -43,7 +43,7 @@ function PageDao:getPage(item_id)
 end
 
 function PageDao:save(data)
-    local sql = "insert into `apidoc`.`page` ( `cat_id`, `order`, `page_content`, `author_username`, `author_uid`, `item_id`, `page_title`) values ( ?, ?, ?, ?, ?, ?, ?)"
+    local sql = "insert into `page` ( `cat_id`, `order`, `page_content`, `author_username`, `author_uid`, `item_id`, `page_title`) values ( ?, ?, ?, ?, ?, ?, ?)"
     local params = {tonumber(data.cat_id), tonumber(data.order), data.page_content,'admin',tonumber(data.author_uid),tonumber(data.item_id),data.page_title}
     local is_insert = true
     if data.page_id ~='0' then

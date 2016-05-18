@@ -40,7 +40,7 @@ function ItemDao:save(data)
 end
 
 function ItemDao:get(page_id)
-    local res, err =  db:query("select * from page where page_id=?",{tonumber(page_id)})
+    local res, err =  db:query("select * from `page` where page_id=?",{tonumber(page_id)})
     if not res or err or type(res) ~= "table" or #res <= 0 then
         return nil
     else

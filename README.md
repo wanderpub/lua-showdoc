@@ -15,6 +15,7 @@
 - 首先安装OpenResty、luajit和[Vanilla](https://github.com/idevz/vanilla)框架，安装成功的标志是以下三个命令可以正常输出
 	- nginx -v
 	- luajit -v
+- 安装[lua-resty-session](https://github.com/bungle/lua-resty-session),将 session.lua 文件和 session 目录copy到/usr/local/openresty/lualib/resty目录下。
 - 将仓库中提供的[sql文件](install/api.sql)导入到MySQL
 - 修改配置文件`config/application.lua`为本地对应配置
 - 执行`sh va-van16-service confinit` 初始化nginx配置文件
