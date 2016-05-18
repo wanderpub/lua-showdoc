@@ -1,0 +1,69 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> ShowDoc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    @charset "utf-8";
+	body {
+		font:14px/1.5 "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+	}
+    </style>
+      <script type="text/javascript">
+      var DocConfig = {
+          host: window.location.origin,
+          app: "/",
+          pubile:"/static",
+      }
+      DocConfig.hostUrl = DocConfig.host + "/" + DocConfig.app;
+      </script>
+
+  </head>
+  <body>
+<link rel="stylesheet" href="/static/css/login.css" />
+    <div class="container">
+      <div class="form-signin">
+        <h3 class="form-signin-heading">登录</h3>
+        <input type="text" class="input-block-level username" name="username" placeholder="用户名">
+        <input type="password" class="input-block-level password" name="password" placeholder="密码">
+        <button class="btn btn-large btn-primary" type="submit">登录</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="register">没有账号？马上去注册→</a>
+      </div>
+
+    </div> <!-- /container -->
+	<script src="/static/js/common/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/common/showdoc.js"></script>
+  </body>
+</html>
+<script type="text/javascript">
+   $("body").keydown(function() {
+       if (event.keyCode == "13") {//keyCode=13是回车键
+           $('.btn').click();
+       }
+   });
+  $(".btn").click(function () {
+    var username=$('.username').val(),password=$('.password').val();
+    if(username=='' || password==""){
+      alert('用户名或者密码不能为空。');
+      return;
+    }
+    $.post('/user/login_form',{username:username,password:password})
+      .done(function(data) {
+          data = JSON.parse(data);
+          if(data.code==200){
+            window.location = '/';
+          }else{
+            alert(data.message);
+            $('.password').val('');
+            return;
+          }
+      });
+    return;
+  })
+</script>

@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> ShowDoc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    @charset "utf-8";
+	body {
+		font:14px/1.5 "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+	}
+    </style>
+      <script type="text/javascript">
+      var DocConfig = {
+          host: window.location.origin,
+          app: "/",
+          pubile:"/static",
+      }
+      DocConfig.hostUrl = DocConfig.host + "/" + DocConfig.app;
+      </script>
+  </head>
+  <body>
+<link rel="stylesheet" href="/static/css/login.css" />
+    <div class="container">
+      <div class="form-signin" method="post">
+        <input type="hidden" id="item_id" name="item_id" value="">
+        <input type="text" class="input-block-level item_name"  name="item_name" placeholder="项目名" value="" >
+        <input type="text" class="input-block-level item_description"  name="item_description" placeholder="项目描述" value="">
+        <input type="password" class="input-block-level password" name="password" placeholder="访问密码（可选，私密项目请设置密码）" value="">
+        <button class="btn btn-primary" type="submit">提交</button>
+        <a href="javascript:history.go(-1)" class="btn">返回</a>
+      </div>
+    </div>
+	<script src="/static/js/common/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/common/showdoc.js"></script>
+  </body>
+<script type="text/javascript">
+   $("body").keydown(function() {
+       if (event.keyCode == "13") {//keyCode=13是回车键
+           $('.btn').click();
+       }
+   });
+  $(".btn").click(function () {
+    var item_name=$('.item_name').val(),
+        item_description=$('.item_description').val(),
+        password=$('.password').val();
+        
+    if(item_name=='' || item_description==""){
+      alert('项目名或者项目描述不能为空！');
+      return;
+    }
+    $.post('/item/save',{item_name:item_name,item_description:item_description,password:password})
+      .done(function(data) {
+          data = JSON.parse(data);
+          if(data.code==200){
+            window.location = '/item';
+          }else{
+            alert(data.message);
+            return;
+          }
+      });
+    return;
+  })
+</script>
+</html>

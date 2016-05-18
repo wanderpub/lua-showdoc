@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title> ShowDoc</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    @charset "utf-8";
+  body {
+    font:14px/1.5 "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+  }
+    </style>
+      <script type="text/javascript">
+      var DocConfig = {
+          host: window.location.origin,
+          app: "/",
+          pubile:"/static",
+      }
+      DocConfig.hostUrl = DocConfig.host + "/" + DocConfig.app;
+      </script>
+  </head>
+  <body>
+<link rel="stylesheet" href="/static/css/item/index.css" />
+<style type="text/css">
+  .container-thumbnails{
+    margin-top: 60px;
+  }
+  .thumbnails li a{
+    color: #888;
+    font-weight: bold;
+  }
+  .thumbnails li a:hover,
+  .thumbnails li a:focus{
+    border-color:#f2f5e9;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    text-decoration: none;
+    background-color: #f2f5e9;
+  }
+</style>
+    <div class="container-narrow">
+
+      <div class="masthead">
+        <div class="btn-group pull-right">
+        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">{{username}}<span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+        <!-- dropdown menu links -->
+          <li><a href="/user/setting">个人设置</a></li>
+          <li><a href="#share-home-modal"  data-toggle="modal">分享主页</a></li>
+          <li><a href="/">网站首页</a></li>
+          <li><a href="/user/logout">退出登录</a></li>
+
+        </ul>
+        </div>
+
+        </ul>
+        <h3 class="muted">ShowDoc</h3>
+      </div>
+
+      <hr>
+
+    <div class="container-thumbnails">
+      <ul class="thumbnails">
+      {% for k, v in pairs(data) do %}
+        <li class="span3 text-center">
+            <a class="thumbnail" href="/item/show?item_id={{v.item_id}}" title="sdf">
+              <p class="my-item">{{v.item_name}}</p>
+            </a>
+          </li>
+         {% end %}
+        <li class="span3 text-center">
+          <a class="thumbnail" href="/item/edit" title="添加一个新项目">
+            <p class="my-item ">新建项目&nbsp;<i class="icon-plus"></i></p>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+
+    </div> <!-- /container -->
+
+<!-- 分享项目框 -->
+<div class="modal hide fade" id="share-home-modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>分享我的主页</h3>
+  </div>
+  <div class="modal-body">
+    <p>主页地址：<code id="share-home-link">http://doc.star7th.com/index.php/uid/536</code></p>
+    <p>别人访问您的主页时，将可以看到您的所有公开项目（但没有新建项目等权限）。你可以复制地址给你的好友</p>
+  </div>
+</div>
+  <script src="/static/js/common/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/common/showdoc.js"></script>
+  </body>
+</html> 
+ <script type="text/javascript">
+
+
+ </script>
