@@ -48,7 +48,7 @@ function PageDao:save(data)
     local is_insert = true
     if data.page_id ~='0' then
         is_insert = false
-        sql = "update `apidoc`.`page` set `order`=?,`page_title`=?,`page_content`=? where `page_id`=?"
+        sql = "update `page` set `order`=?,`page_title`=?,`page_content`=? where `page_id`=?"
         params = {tonumber(data.order), data.page_title,data.page_content,tonumber(data.page_id)}
     end
     local res, err = db:query(sql,params)
