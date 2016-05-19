@@ -25,7 +25,7 @@ Appconf.mysql = {
         port = 3306,
         database = "apidoc",
         user = "root",
-        password = "kd123456",
+        password = "123456",
         max_packet_size = 1024 * 1024
 	},
 	pool_config = {
