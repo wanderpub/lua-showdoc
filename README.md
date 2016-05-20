@@ -17,7 +17,12 @@
 	- luajit -v
 - 安装[lua-resty-session](https://github.com/bungle/lua-resty-session),将 session.lua 文件和 session 目录copy到/usr/local/openresty/lualib/resty目录下。
 - 将仓库中提供的[sql文件](install/api.sql)导入到MySQL
-- 修改配置文件`config/application.lua`为本地对应配置
+- 修改配置文件`config/application.lua`中`Appconf.vanilla_root`为您安装vanilla的路径
+- 修改配置文件`config/application.lua`中Appconf.mysql为您本地对应配置
+- 修改nginx-conf/va-nginx.conf文件lua_package_path、lua_package_cpath、init_worker_by_lua_file为您本地对应的路径
+- 修改nginx-conf/va-van16-service文件OPENRESTY_NGINX_ROOT为您本地对应的路径
+- 修改nginx-conf/vhost/van16.conf文件中root路径、VANILLA_ROOT路径为您本地对应的路径
+
 - 执行`sh va-van16-service confinit` 初始化nginx配置文件
 - 执行`sh va-van16-service start` 即可使用nginx_conf/va-nginx.conf启动生产环境，也可使用`sh va-van16-service start dev`即可使用nginx_conf/va-nginx.即可使用nginx_conf/vhost/van16.conf为本地合适的配置
 - 生产环境访问`http://localhost`即可体验lua-showdoc功能，开发环境默认端口9110
