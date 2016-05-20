@@ -7,6 +7,8 @@
 - 基于[Vanilla](https://github.com/idevz/vanilla) 0.1.0.rc6，轻松简单的完成web应用开发
 - 存储采用MySQL，文件本地落地存储
 
+DEMO 请看[demo](https://api.wander.pub)
+
 ![首页](./doc/index.png)
 
 
